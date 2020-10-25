@@ -24,7 +24,7 @@ km = km_from
 count = 1
 
 while km < km_to:
-    km = km + ((km * 10) / 100)
+    km *= 1.1
     count += 1
 
 
