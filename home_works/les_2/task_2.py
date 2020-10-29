@@ -5,10 +5,23 @@
 Для заполнения списка элементов необходимо использовать функцию input().
 """
 
-lst = input('Введите значения для списка')
+lst = input('Введите значения для списка: ')
 
 length_lst = len(lst)
 
+lst2 =[]
 if length_lst %2 == 0:
-    for i in range(length_lst-1):
+    for i in range(0, length_lst-1, 2):
+        lst2.append(lst[i+1])
+        lst2.append(lst[i])
+else:
+    for i in range(0, length_lst-1, 2):
+        lst2.append(lst[i+1])
+        lst2.append(lst[i])
+    lst2.append(lst[-1])
+   
+
+print(''.join(lst2))
+        
+        
         
