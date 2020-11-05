@@ -26,20 +26,57 @@
 “ед”: [“шт.”]
 }
 """
-num = int(input('Введите сколько будет наименований товаров: '))
+
+templates = {
+    'название': ('Название товара: ', str),
+    'цена': ('Стоимость товара: ', int),
+    'количество': ('Введите количество товара: ', int),
+    'eд': ('Единицы измерения товара: ', str)
+}
 
 
-lst = []
-for i in range(1, num +1):
-    user = {}
-    templates = {
-        'название': input('Введите название товара: '),
-        'цена': input('Введите стоимость товара: '),
-        'количество': input('Введите количество товара: '),
-        'eд': input('Введите единицы измерения товара: ')
-        }
+count = 1
+prod_list =[]
+
+new_enter = True
+
+while new_enter:
+    product = {}
     for k, v in templates.items():
-        user[k] = v
-    lst.append((i, user))
+        while True:
+            try:
+                user_value = v[1](input(v[0]))
+            except ValueError as e:
+                print(f'Вы ввели не верные данные {e}')
+                continue
+            product[k] = user_value
+            break
 
-print(lst)
+    prod_list.append((count, product))
+    count +=1
+    print(prod_list)
+
+
+    while True:
+        new_prod = input('Хотите ввести новый товар? да/нет ')
+        if new_prod.lower() in ('да', 'нет'):
+            new_enter = new_prod == 'да'
+            break
+        else:
+            print('Вы ввели не верное значение')
+            continue
+
+
+prod_analitics = {}
+
+for k in templates:
+    prod_analitics[k] = [item[1][k] for item in prod_list]
+
+print(prod_analitics)
+'''
+for k in templates:
+    result = []
+    for item in prod_list:
+        result.append(item[1][k])
+    prod_analitics[k] = result
+'''
