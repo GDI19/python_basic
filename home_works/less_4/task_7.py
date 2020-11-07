@@ -20,10 +20,17 @@ print(fact)
 
 """
 
-def factorial(n):
-    if n < 1:
-        return 1
-    else:
-        return n * factorial(n-1)
 
+def factorial(n):
+    prev = 1
+    result = 1
+    while n:
+        yield result
+        prev += 1
+        n -= 1
+        result *= prev
+
+
+for i, item in enumerate(factorial(5)):
+    print(i, item)
 

@@ -6,9 +6,10 @@
 """
 from sys import argv
 
-_, hours, hourly_rate, bonus = argv
+
 
 try:
+    _, hours, hourly_rate, bonus, *_ = argv
     print('Заработная плата составит', int(hours)*int(hourly_rate)+int(bonus))
 except ValueError:
     print(f'Вы не верно указали параметры {hours} {hourly_rate} {bonus} '
